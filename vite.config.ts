@@ -8,4 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: '/portfolio/', // Add this line (must match your GitHub repository name)
 })
