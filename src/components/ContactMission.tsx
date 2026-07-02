@@ -22,8 +22,8 @@ export function ContactMission() {
       label: 'LinkedIn Profile',
       icon: null,
       url: 'https://linkedin.com',
-      color: 'bg-blue-600/10 text-blue-400 hover:bg-blue-600/25',
-      borderColor: 'border-blue-500/30',
+      color: 'bg-white/10 text-white hover:bg-white/20',
+      borderColor: 'border-white/30',
       svgLogo: true
     },
     {
@@ -40,24 +40,24 @@ export function ContactMission() {
       label: 'Engineering Resume',
       icon: FileText,
       url: '#',
-      color: 'bg-amber-500/10 text-amber-400 hover:bg-amber-500/20',
-      borderColor: 'border-amber-500/30'
+      color: 'bg-universe-primary/10 text-universe-primary hover:bg-universe-primary/20',
+      borderColor: 'border-universe-primary/30'
     },
     {
       id: 'email',
       label: 'Direct Email',
       icon: Mail,
       url: 'mailto:abin@example.com',
-      color: 'bg-rose-500/10 text-rose-400 hover:bg-rose-500/20',
-      borderColor: 'border-rose-500/30'
+      color: 'bg-white/10 text-white hover:bg-white/20',
+      borderColor: 'border-white/30'
     },
     {
       id: 'meeting',
       label: 'Schedule Meeting',
       icon: Calendar,
       url: 'https://calendly.com',
-      color: 'bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20',
-      borderColor: 'border-emerald-500/30'
+      color: 'bg-universe-primary/10 text-universe-primary hover:bg-universe-primary/20',
+      borderColor: 'border-universe-primary/30'
     }
   ]
 

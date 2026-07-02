@@ -26,8 +26,8 @@ export function SkillsLab() {
       experience: '2+ Years',
       projects: ['Smart Campus', 'Portfolio UI', 'AI Chat Assistant'],
       diagnosticCode: 'const [state, dispatch] = useReducer(reducer, init);',
-      glowColor: 'shadow-cyan-500/10 text-cyan-400',
-      borderColor: 'border-cyan-500/30'
+      glowColor: 'shadow-universe-primary/10 text-universe-primary',
+      borderColor: 'border-universe-primary/20'
     },
     {
       name: 'TypeScript',
@@ -37,8 +37,8 @@ export function SkillsLab() {
       experience: '2 Years',
       projects: ['Enterprise API Gateway', 'Smart Campus'],
       diagnosticCode: 'type Diagnostics<T> = { [P in keyof T]: T[P] };',
-      glowColor: 'shadow-blue-500/10 text-blue-400',
-      borderColor: 'border-blue-500/30'
+      glowColor: 'shadow-white/10 text-white',
+      borderColor: 'border-white/20'
     },
     {
       name: 'Next.js',
@@ -48,8 +48,8 @@ export function SkillsLab() {
       experience: '1.5 Years',
       projects: ['SaaS Dashboard', 'E-commerce Landing'],
       diagnosticCode: 'export async function generateMetadata({ params }) {}',
-      glowColor: 'shadow-indigo-500/10 text-indigo-400',
-      borderColor: 'border-indigo-500/30'
+      glowColor: 'shadow-universe-primary/10 text-universe-primary',
+      borderColor: 'border-universe-primary/20'
     },
     {
       name: 'Tailwind CSS',
@@ -58,9 +58,9 @@ export function SkillsLab() {
       confidence: '95% (Render Ready)',
       experience: '2+ Years',
       projects: ['Portfolio UI', 'SaaS Dashboard', 'Smart Campus'],
-      diagnosticCode: '@import "tailwindcss"; @theme { --color-primary: #6366f1; }',
-      glowColor: 'shadow-teal-500/10 text-teal-400',
-      borderColor: 'border-teal-500/30'
+      diagnosticCode: '@import "tailwindcss"; @theme { --color-universe-primary: #66ff03; }',
+      glowColor: 'shadow-white/10 text-white',
+      borderColor: 'border-white/20'
     },
     {
       name: 'Node.js',
@@ -70,8 +70,8 @@ export function SkillsLab() {
       experience: '2 Years',
       projects: ['Complaint Processing Core', 'Smart Campus API'],
       diagnosticCode: 'const cluster = require("cluster"); if (cluster.isMaster) {}',
-      glowColor: 'shadow-emerald-500/10 text-emerald-400',
-      borderColor: 'border-emerald-500/30'
+      glowColor: 'shadow-universe-primary/10 text-universe-primary',
+      borderColor: 'border-universe-primary/20'
     },
     {
       name: 'Express',
@@ -81,8 +81,8 @@ export function SkillsLab() {
       experience: '2 Years',
       projects: ['Campus API Gateway', 'Auth Service'],
       diagnosticCode: 'app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));',
-      glowColor: 'shadow-yellow-500/10 text-yellow-400',
-      borderColor: 'border-yellow-500/30'
+      glowColor: 'shadow-white/10 text-white',
+      borderColor: 'border-white/20'
     },
     {
       name: 'MongoDB',
@@ -92,8 +92,8 @@ export function SkillsLab() {
       experience: '1.5 Years',
       projects: ['User Database Store', 'Smart Campus DB'],
       diagnosticCode: 'db.complaints.createIndex({ campusId: 1, priority: -1 });',
-      glowColor: 'shadow-green-500/10 text-green-400',
-      borderColor: 'border-green-500/30'
+      glowColor: 'shadow-universe-primary/10 text-universe-primary',
+      borderColor: 'border-universe-primary/20'
     },
     {
       name: 'Supabase',
@@ -103,8 +103,8 @@ export function SkillsLab() {
       experience: '1 Year',
       projects: ['AI Chat Database', 'Authentication Core'],
       diagnosticCode: 'const { data, error } = await supabase.from("chat").select();',
-      glowColor: 'shadow-emerald-400/10 text-emerald-300',
-      borderColor: 'border-emerald-400/30'
+      glowColor: 'shadow-white/10 text-white',
+      borderColor: 'border-white/20'
     },
     {
       name: 'Docker',
@@ -114,8 +114,8 @@ export function SkillsLab() {
       experience: '1 Year',
       projects: ['Production API Gateway', 'Dev Environment'],
       diagnosticCode: 'FROM node:18-alpine\nWORKDIR /app\nCOPY . .\nCMD ["npm", "start"]',
-      glowColor: 'shadow-blue-400/10 text-blue-300',
-      borderColor: 'border-blue-400/30'
+      glowColor: 'shadow-universe-primary/10 text-universe-primary',
+      borderColor: 'border-universe-primary/20'
     },
     {
       name: 'Git',
@@ -125,8 +125,8 @@ export function SkillsLab() {
       experience: '3 Years',
       projects: ['All Repositories', 'CI/CD Pipelines'],
       diagnosticCode: 'git commit -m "feat: implement smart classifier sandbox"',
-      glowColor: 'shadow-orange-500/10 text-orange-400',
-      borderColor: 'border-orange-500/30'
+      glowColor: 'shadow-white/10 text-white',
+      borderColor: 'border-white/20'
     },
     {
       name: 'Python',
@@ -136,8 +136,8 @@ export function SkillsLab() {
       experience: '2 Years',
       projects: ['AI Complaint Classifier', 'Scraping Tools'],
       diagnosticCode: 'model = pipeline("text-classification", model="custom-bert")',
-      glowColor: 'shadow-sky-500/10 text-sky-400',
-      borderColor: 'border-sky-500/30'
+      glowColor: 'shadow-universe-primary/10 text-universe-primary',
+      borderColor: 'border-universe-primary/20'
     }
   ]
 
@@ -176,7 +176,7 @@ export function SkillsLab() {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2 rounded-xl text-xs font-mono border transition-all cursor-pointer ${
                 activeCategory === cat.id
-                  ? 'bg-universe-primary border-universe-primary text-white shadow-lg shadow-universe-primary/20'
+                  ? 'bg-universe-primary border-universe-primary text-black font-bold shadow-lg shadow-universe-primary/20'
                   : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
               }`}
             >

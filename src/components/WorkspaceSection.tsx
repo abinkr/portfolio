@@ -29,8 +29,8 @@ export function WorkspaceSection() {
         'TypeScript Typesafety & Robust Error Boundaries',
         'Optimizing Core Web Vitals to maximize UX performance'
       ],
-      accentColor: 'from-blue-500 to-indigo-600',
-      glowClass: 'shadow-blue-500/20 border-blue-500/30'
+      accentColor: 'from-white to-zinc-400',
+      glowClass: 'shadow-white/5 border-white/20'
     },
     {
       id: 'books',
@@ -44,8 +44,8 @@ export function WorkspaceSection() {
         'Studying security patterns, OAuth 2.0, and Web Cryptography',
         'Reviewing performance optimization in bundlers (Vite, webpack)'
       ],
-      accentColor: 'from-purple-500 to-pink-600',
-      glowClass: 'shadow-purple-500/20 border-purple-500/30'
+      accentColor: 'from-universe-primary to-white',
+      glowClass: 'shadow-universe-primary/20 border-universe-primary/30'
     },
     {
       id: 'coffee',
@@ -59,8 +59,8 @@ export function WorkspaceSection() {
         'Designing test suites & mocking complex integrations',
         'Building side automation scripts and CLI pipelines'
       ],
-      accentColor: 'from-amber-500 to-orange-600',
-      glowClass: 'shadow-amber-500/20 border-amber-500/30'
+      accentColor: 'from-zinc-500 to-zinc-700',
+      glowClass: 'shadow-zinc-500/10 border-zinc-500/20'
     },
     {
       id: 'server',
@@ -74,8 +74,8 @@ export function WorkspaceSection() {
         'JWT Authentication & role-based access control',
         'Server caching (Redis) & performance load balancing'
       ],
-      accentColor: 'from-cyan-500 to-teal-600',
-      glowClass: 'shadow-cyan-500/20 border-cyan-500/30'
+      accentColor: 'from-universe-primary to-zinc-650',
+      glowClass: 'shadow-universe-primary/10 border-universe-primary/20'
     },
     {
       id: 'cloud',
@@ -89,8 +89,8 @@ export function WorkspaceSection() {
         'Serverless Functions and Edge hosting optimizations',
         'Continuous logs monitoring and uptime health checks'
       ],
-      accentColor: 'from-emerald-500 to-green-600',
-      glowClass: 'shadow-emerald-500/20 border-emerald-500/30'
+      accentColor: 'from-white to-universe-primary/60',
+      glowClass: 'shadow-white/5 border-white/15'
     }
   ]
 
@@ -128,7 +128,7 @@ export function WorkspaceSection() {
               <motion.button
                 onClick={() => setSelectedItem(items[0])}
                 whileHover={{ scale: 1.1, translateY: -5 }}
-                className="absolute top-[20%] left-[20%] p-4 rounded-2xl bg-slate-900 border border-blue-500/30 text-blue-400 shadow-lg shadow-blue-500/10 cursor-pointer flex flex-col items-center gap-1"
+                className="absolute top-[20%] left-[20%] p-4 rounded-2xl bg-slate-900 border border-white/20 text-white shadow-lg shadow-white/5 cursor-pointer flex flex-col items-center gap-1"
               >
                 <Laptop className="w-6 h-6 animate-bounce" />
                 <span className="text-xs font-heading font-medium text-slate-300">Laptop</span>
@@ -138,7 +138,7 @@ export function WorkspaceSection() {
               <motion.button
                 onClick={() => setSelectedItem(items[1])}
                 whileHover={{ scale: 1.1, translateY: -5 }}
-                className="absolute top-[20%] right-[20%] p-4 rounded-2xl bg-slate-900 border border-purple-500/30 text-purple-400 shadow-lg shadow-purple-500/10 cursor-pointer flex flex-col items-center gap-1"
+                className="absolute top-[20%] right-[20%] p-4 rounded-2xl bg-slate-900 border border-universe-primary/30 text-universe-primary shadow-lg shadow-universe-primary/5 cursor-pointer flex flex-col items-center gap-1"
               >
                 <BookOpen className="w-6 h-6" />
                 <span className="text-xs font-heading font-medium text-slate-300">Books</span>
@@ -148,7 +148,7 @@ export function WorkspaceSection() {
               <motion.button
                 onClick={() => setSelectedItem(items[2])}
                 whileHover={{ scale: 1.1, translateY: -5 }}
-                className="absolute bottom-[20%] left-[20%] p-4 rounded-2xl bg-slate-900 border border-amber-500/30 text-amber-400 shadow-lg shadow-amber-500/10 cursor-pointer flex flex-col items-center gap-1"
+                className="absolute bottom-[20%] left-[20%] p-4 rounded-2xl bg-slate-900 border border-zinc-600/30 text-zinc-400 shadow-lg shadow-zinc-500/5 cursor-pointer flex flex-col items-center gap-1"
               >
                 <Coffee className="w-6 h-6" />
                 <span className="text-xs font-heading font-medium text-slate-300">Coffee</span>
@@ -158,7 +158,7 @@ export function WorkspaceSection() {
               <motion.button
                 onClick={() => setSelectedItem(items[3])}
                 whileHover={{ scale: 1.1, translateY: -5 }}
-                className="absolute bottom-[20%] right-[20%] p-4 rounded-2xl bg-slate-900 border border-cyan-500/30 text-cyan-400 shadow-lg shadow-cyan-500/10 cursor-pointer flex flex-col items-center gap-1"
+                className="absolute bottom-[20%] right-[20%] p-4 rounded-2xl bg-slate-900 border border-universe-primary/30 text-universe-primary shadow-lg shadow-universe-primary/5 cursor-pointer flex flex-col items-center gap-1"
               >
                 <Server className="w-6 h-6" />
                 <span className="text-xs font-heading font-medium text-slate-300">Server</span>
@@ -168,7 +168,7 @@ export function WorkspaceSection() {
               <motion.button
                 onClick={() => setSelectedItem(items[4])}
                 whileHover={{ scale: 1.1, translateY: -5 }}
-                className="absolute bottom-[48%] right-[10%] p-4 rounded-2xl bg-slate-900 border border-emerald-500/30 text-emerald-400 shadow-lg shadow-emerald-500/10 cursor-pointer flex flex-col items-center gap-1"
+                className="absolute bottom-[48%] right-[10%] p-4 rounded-2xl bg-slate-900 border border-white/20 text-white shadow-lg shadow-white/5 cursor-pointer flex flex-col items-center gap-1"
               >
                 <Cloud className="w-6 h-6 animate-pulse" />
                 <span className="text-xs font-heading font-medium text-slate-300">Cloud</span>

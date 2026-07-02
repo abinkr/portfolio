@@ -20,9 +20,9 @@ export function JourneyTimeline() {
       subtitle: 'The spark of programming',
       description: 'Discovered python, shell scripting, and core algorithmic thinking. Built CLI automation tools and fell in love with crafting solutions.',
       icon: Code2,
-      color: 'text-rose-400',
-      borderColor: 'border-rose-500/30',
-      bgColor: 'bg-rose-500/5'
+      color: 'text-universe-primary',
+      borderColor: 'border-universe-primary/30',
+      bgColor: 'bg-universe-primary/5'
     },
     {
       year: '2024',
@@ -30,9 +30,9 @@ export function JourneyTimeline() {
       subtitle: 'Building the modern web',
       description: 'Mastered JavaScript, TypeScript, React, Node.js, and databases. Constructed full web applications with authentication, responsive layouts, and REST APIs.',
       icon: GraduationCap,
-      color: 'text-blue-400',
-      borderColor: 'border-blue-500/30',
-      bgColor: 'bg-blue-500/5'
+      color: 'text-white',
+      borderColor: 'border-white/30',
+      bgColor: 'bg-white/5'
     },
     {
       year: '2025',
@@ -40,9 +40,9 @@ export function JourneyTimeline() {
       subtitle: 'Intelligent software design',
       description: 'Pivoted into LLM API integration, natural language classifiers, semantic search, and agentic workflows. Built smart widgets and automated data pipelines.',
       icon: Sparkles,
-      color: 'text-purple-400',
-      borderColor: 'border-purple-500/30',
-      bgColor: 'bg-purple-500/5'
+      color: 'text-universe-primary',
+      borderColor: 'border-universe-primary/30',
+      bgColor: 'bg-universe-primary/5'
     },
     {
       year: '2026',
@@ -50,9 +50,9 @@ export function JourneyTimeline() {
       subtitle: 'Continuous delivery',
       description: 'Focused on high-performance optimization, Tailwind CSS v4, Framer Motion aesthetics, serverless infrastructure, and Docker deployments for clients.',
       icon: Globe,
-      color: 'text-emerald-400',
-      borderColor: 'border-emerald-500/30',
-      bgColor: 'bg-emerald-500/5'
+      color: 'text-white',
+      borderColor: 'border-white/30',
+      bgColor: 'bg-white/5'
     },
     {
       year: 'Future',
@@ -60,9 +60,9 @@ export function JourneyTimeline() {
       subtitle: 'Always learning',
       description: 'Researching advanced agentic architecture, decentralized storage systems, Edge computing, and immersive 3D interfaces to craft the web of tomorrow.',
       icon: Rocket,
-      color: 'text-cyan-400',
-      borderColor: 'border-cyan-500/30',
-      bgColor: 'bg-cyan-500/5'
+      color: 'text-universe-primary',
+      borderColor: 'border-universe-primary/30',
+      bgColor: 'bg-universe-primary/5'
     }
   ]
 

@@ -95,7 +95,7 @@ export function Achievements() {
             suffix="+"
             icon={Rocket}
             description="Production products and sandboxed web software platforms fully shipped."
-            color="text-emerald-400"
+            color="text-universe-primary"
           />
 
           <CountUpStat
@@ -104,7 +104,7 @@ export function Achievements() {
             suffix="+"
             icon={GraduationCap}
             description="Frameworks, databases, languages, and container models configured."
-            color="text-indigo-400"
+            color="text-white"
           />
 
           <CountUpStat
@@ -113,7 +113,7 @@ export function Achievements() {
             suffix="+"
             icon={GitCommit}
             description="Version control pushes documenting constant deployment increments."
-            color="text-rose-400"
+            color="text-universe-primary"
           />
         </div>
 
@@ -125,7 +125,7 @@ export function Achievements() {
             viewport={{ once: true }}
             className="p-6 rounded-2xl border border-slate-900 bg-slate-950/20 glass-panel flex items-start gap-4"
           >
-            <div className="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400">
+            <div className="p-2 bg-universe-primary/10 border border-universe-primary/20 rounded-xl text-universe-primary">
               <CheckCircle className="w-5 h-5" />
             </div>
             <div className="space-y-1">
@@ -142,7 +142,7 @@ export function Achievements() {
             viewport={{ once: true }}
             className="p-6 rounded-2xl border border-slate-900 bg-slate-950/20 glass-panel flex items-start gap-4"
           >
-            <div className="p-2 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400">
+            <div className="p-2 bg-white/10 border border-white/20 rounded-xl text-white">
               <Award className="w-5 h-5" />
             </div>
             <div className="space-y-1">

@@ -26,9 +26,9 @@ export function Starfield() {
 
     const colors = [
       'rgba(255, 255, 255, 0.8)',
-      'rgba(99, 102, 241, 0.6)', // Primary
-      'rgba(139, 92, 246, 0.6)', // Secondary
-      'rgba(6, 180, 212, 0.6)',   // Accent
+      'rgba(102, 255, 3, 0.6)', // Neon Green
+      'rgba(255, 255, 255, 0.4)', // Dim White
+      'rgba(102, 255, 3, 0.2)',  // Dim Neon Green
     ]
 
     const handleResize = () => {

@@ -49,13 +49,13 @@ function App() {
   }
 
   return (
-    <div className="relative min-h-screen bg-bg-universe text-white overflow-x-hidden font-sans select-none selection:bg-universe-primary selection:text-white">
+    <div className="relative min-h-screen bg-bg-universe text-white overflow-x-hidden font-sans select-none selection:bg-universe-primary selection:text-black">
       {/* Starfield Background */}
       <Starfield />
 
       {/* Ambient glows behind sections */}
       <div className="fixed top-[20%] left-[10%] w-[350px] h-[350px] rounded-full bg-universe-primary/5 blur-[120px] pointer-events-none z-0" />
-      <div className="fixed bottom-[20%] right-[10%] w-[450px] h-[450px] rounded-full bg-universe-accent/5 blur-[150px] pointer-events-none z-0" />
+      <div className="fixed bottom-[20%] right-[10%] w-[450px] h-[450px] rounded-full bg-white/5 blur-[150px] pointer-events-none z-0" />
 
       {/* Header / Navbar */}
       <Navbar 
@@ -89,7 +89,7 @@ function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="text-6xl sm:text-8xl font-heading font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400"
+              className="text-6xl sm:text-8xl font-heading font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-universe-primary"
             >
               ABIN K R
             </motion.h1>
@@ -122,7 +122,7 @@ function App() {
           >
             <button
               onClick={enterUniverse}
-              className="px-8 py-4 rounded-xl bg-gradient-to-r from-universe-primary to-universe-secondary text-white font-heading font-bold text-sm tracking-wider shadow-lg shadow-universe-primary/20 hover:shadow-universe-primary/45 transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] cursor-pointer flex items-center gap-2 mx-auto"
+              className="px-8 py-4 rounded-xl bg-universe-primary text-black font-heading font-extrabold text-sm tracking-wider shadow-lg shadow-universe-primary/20 hover:bg-white hover:text-black hover:shadow-white/20 transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] cursor-pointer flex items-center gap-2 mx-auto"
             >
               <span>Enter My Universe</span>
               <ArrowDown className="w-4 h-4 animate-bounce" />

@@ -45,7 +45,7 @@ export function Navbar({ activeSection, soundEnabled, setSoundEnabled }: NavbarP
     <>
       {/* Scroll Progress Bar */}
       <div 
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-universe-primary via-universe-secondary to-universe-accent z-100 transition-all duration-100"
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-universe-primary via-white to-universe-primary/80 z-100 transition-all duration-100"
         style={{ width: `${scrollProgress}%` }}
       />
 
