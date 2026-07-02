@@ -1,6 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Globe, Layout, Sparkles, Send, ExternalLink, X, Cpu, ArrowRight, Play, FileText, RefreshCw } from 'lucide-react'
+import { ExternalLink, X, Sparkles, ChevronRight, Monitor, Shield, FileText, Users, Globe } from 'lucide-react'
+
+function GithubIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+      <path d="M9 18c-4.51 2-5-2-7-2"/>
+    </svg>
+  )
+}
 
 interface Project {
   id: string
@@ -14,654 +23,414 @@ interface Project {
   techStack: string[]
   githubUrl: string
   liveUrl: string
-  color: string
+  liveUrl2?: string
+  liveLabel?: string
+  liveLabel2?: string
+  gradient: string
+  accentColor: string
   icon: any
-  planetSize: string
-  orbitDuration: number
+  featured?: boolean
 }
 
 export function ProjectUniverse() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  
-  // Complaint system demo state
-  const [demoInput, setDemoInput] = useState('')
-  const [demoStatus, setDemoStatus] = useState<'idle' | 'analyzing' | 'complete'>('idle')
-  const [demoResult, setDemoResult] = useState<any>(null)
-  const [activePipelineStep, setActivePipelineStep] = useState<number>(-1)
-
-  // Resume Builder Sandbox state
-  const [resumeName, setResumeName] = useState('Abin K R')
-  const [resumeTitle, setResumeTitle] = useState('Full Stack Developer')
-  const [resumeSkills, setResumeSkills] = useState('React, Node.js, TypeScript, Python')
-  const [resumeExportStatus, setResumeExportStatus] = useState<'idle' | 'generating' | 'complete'>('idle')
-
-  // Portfolio Diagnostics Sandbox state
-  const [auditProgress, setAuditProgress] = useState(0)
-  const [auditStatus, setAuditStatus] = useState<'idle' | 'running' | 'complete'>('idle')
-  const [cpuUsage, setCpuUsage] = useState(12)
-  const [memoryUsage, setMemoryUsage] = useState(48)
 
   const projects: Project[] = [
     {
       id: 'smart-campus',
-      name: 'Smart Campus Classifier',
-      tagline: 'AI-Driven Facilities Ticketing & Automation Engine',
-      description: 'An intelligent issue classification system that parses text complaints from campus students/staff, routing them to the correct engineering department instantly.',
-      problem: 'Manual triage of campus complaints resulted in delays, incorrect department assignments, and resource waste.',
-      solution: 'Developed an NLP-driven classification middleware that auto-categorizes text complaints, flags urgency levels, and dispatches API notifications to technicians.',
-      challenges: 'Handling noisy slang/abbreviations in student text logs and balancing classifier latency.',
-      lessons: 'Understood tokenization strategies, confidence thresholds, and how to structure fallback queues for unclassified logs.',
-      techStack: ['React', 'Node.js', 'Express', 'Python', 'PostgreSQL', 'Docker', 'Redis'],
+      name: 'Smart Campus Complaint System',
+      tagline: 'AI-Powered Campus Complaint Triage & Analytics Platform',
+      description: 'A comprehensive complaint management platform for campus environments with AI-powered text classification that auto-categorizes issues, MFA-secured portals for both students and administrators, real-time analytics dashboards, and CSV export capabilities.',
+      problem: 'Campus complaints were manually triaged, causing delays, misrouted tickets, and poor visibility into recurring issues.',
+      solution: 'Built a full-stack platform with NLP-powered auto-classification, dual portals (student + admin), real-time dashboards with charts, multi-factor authentication, and department performance analytics.',
+      challenges: 'Training the NLP classifier on noisy student text, orchestrating three independent services (frontend, backend, NLP) via Docker, and implementing secure MFA flows.',
+      lessons: 'Mastered microservice orchestration, NLP tokenization strategies, confidence thresholds, and building production-grade admin analytics dashboards.',
+      techStack: ['React', 'Node.js', 'Express', 'Python', 'PostgreSQL', 'Docker', 'Redis', 'Tailwind CSS'],
       githubUrl: 'https://github.com/abinkr/smart-campus-complaints',
       liveUrl: 'https://smart-campus-student.vercel.app',
-      color: 'from-universe-primary to-black',
-      icon: Globe,
-      planetSize: 'w-24 h-24',
-      orbitDuration: 18
+      liveUrl2: 'https://smart-campus-admin.vercel.app',
+      liveLabel: 'Student Portal',
+      liveLabel2: 'Admin Portal',
+      gradient: 'from-rose-500/20 via-slate-900 to-slate-950',
+      accentColor: 'text-rose-400',
+      icon: Shield,
+      featured: true
     },
     {
       id: 'resume-builder',
       name: 'Professional Resume Builder',
-      tagline: 'Modern Client-Side Resume Builder & PDF Exporter',
-      description: 'A modern, client-side resume builder application that allows you to create, customize, and export professional resumes with ease.',
-      problem: 'Online resume tools are often paywalled, require account setups, and leak personal data to third parties.',
-      solution: 'Built a client-side resume builder using HTML, CSS, and vanilla JS with multiple templates, live preview, JSON backup, and password-protected PDF export.',
-      challenges: 'Generating clean, properly formatted multi-page PDFs directly inside the browser sandbox.',
-      lessons: 'Mastered browser local storage management, JSON state export/import structures, and print styling media rules.',
-      techStack: ['HTML5', 'CSS3', 'JavaScript', 'LocalStorage', 'PDFKit'],
+      tagline: 'Client-Side Resume Editor & PDF Exporter',
+      description: 'A modern resume builder with multiple templates, live preview, skill ratings, QR codes, JSON backup, and password-protected PDF export — all running entirely in the browser with zero backend.',
+      problem: 'Online resume tools are paywalled, require accounts, and leak personal data to third-party servers.',
+      solution: 'Built a fully client-side resume builder with multiple templates, live preview, JSON state export/import, and password-protected PDF generation using browser APIs.',
+      challenges: 'Generating properly formatted multi-page PDFs entirely in the browser sandbox without server-side rendering.',
+      lessons: 'Mastered browser LocalStorage management, client-side PDF generation, print media styling, and JSON state serialization.',
+      techStack: ['JavaScript', 'HTML5', 'CSS3', 'LocalStorage', 'PDF Generation'],
       githubUrl: 'https://github.com/abinkr/Professional-Resume-Builder',
       liveUrl: 'https://abinkr.github.io/Professional-Resume-Builder/',
-      color: 'from-white to-zinc-700',
-      icon: FileText,
-      planetSize: 'w-20 h-20',
-      orbitDuration: 24
+      liveLabel: 'Live Demo',
+      gradient: 'from-indigo-500/20 via-slate-900 to-slate-950',
+      accentColor: 'text-indigo-400',
+      icon: FileText
+    },
+    {
+      id: 'attendance',
+      name: 'Attendance Tracking System',
+      tagline: 'Digital Class Attendance Manager',
+      description: 'A streamlined attendance management tool for educational institutions with year/section tabs, subject-faculty tracking, one-click mark present, search filters, and CSV export for records.',
+      problem: 'Paper-based attendance was error-prone, time-consuming, and made generating reports difficult for faculty.',
+      solution: 'Created a digital attendance system with tabbed year/section navigation, faculty-subject mapping, instant mark-present toggling, and exportable attendance records.',
+      challenges: 'Designing an intuitive UI that faculty could adopt without training while handling large student lists efficiently.',
+      lessons: 'Learned efficient DOM manipulation patterns, CSV generation in vanilla JS, and designing for non-technical end users.',
+      techStack: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages'],
+      githubUrl: 'https://github.com/abinkr/attendance_project',
+      liveUrl: 'https://abinkr.github.io/attendance_project/',
+      liveLabel: 'Live Demo',
+      gradient: 'from-emerald-500/20 via-slate-900 to-slate-950',
+      accentColor: 'text-emerald-400',
+      icon: Users
     },
     {
       id: 'portfolio',
-      name: 'Abin\'s Digital Universe',
-      tagline: 'Cinematic High-Performance Portfolio Experience',
-      description: 'This interactive single-page portfolio designed to engage recruiters with 2.5D dashboards, canvas starfields, and live sandbox demos.',
-      problem: 'Standard resumes are static, failing to showcase real interactive system flows or code architecture capabilities.',
-      solution: 'Crafted a custom, responsive showcase combining Framer Motion parallax, lightweight canvas elements, and built-in interactive demo widgets.',
-      challenges: 'Achieving sub-2-second page loads and 60 FPS viewport transitions on low-spec hardware without heavy WebGL packages.',
-      lessons: 'Optimized rendering frames, designed customized vectors, and learned CSS GPU-acceleration techniques.',
-      techStack: ['Vite', 'React', 'TypeScript', 'Tailwind CSS v4', 'Framer Motion'],
+      name: "Abin's Digital Universe",
+      tagline: 'Cinematic Interactive Portfolio Experience',
+      description: 'This interactive single-page portfolio designed to engage recruiters with animated starfields, smooth scroll transitions, interactive project sandboxes, and a premium dark-mode experience.',
+      problem: 'Standard resumes fail to showcase interactive development skills, system architecture thinking, or real coding craftsmanship.',
+      solution: 'Crafted a custom portfolio with Framer Motion animations, canvas starfields, responsive layouts, and interactive project showcases — all optimized for performance.',
+      challenges: 'Achieving sub-2-second page loads and 60 FPS transitions on low-spec hardware without heavy WebGL packages.',
+      lessons: 'Mastered CSS GPU-acceleration, Framer Motion orchestration, responsive design systems, and performance optimization techniques.',
+      techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Framer Motion'],
       githubUrl: 'https://github.com/abinkr/portfolio',
       liveUrl: 'https://abinkr.github.io/portfolio/',
-      color: 'from-universe-primary to-white',
-      icon: Layout,
-      planetSize: 'w-16 h-16',
-      orbitDuration: 14
+      liveLabel: 'Live Demo',
+      gradient: 'from-[#66FF03]/20 via-slate-900 to-slate-950',
+      accentColor: 'text-[#66FF03]',
+      icon: Globe
     }
   ]
 
-  // Demo classifier presets
-  const presets = [
-    "AC not cooling in Seminar Hall 2",
-    "Water overflowing in block C washroom",
-    "Smart board projector screen won't roll down"
-  ]
-
-  const handleRunDemo = () => {
-    if (!demoInput.trim()) return
-    setDemoStatus('analyzing')
-    setActivePipelineStep(0)
-    setDemoResult(null)
-  }
-
-  // Handle pipeline step sequence
-  useEffect(() => {
-    if (demoStatus !== 'analyzing') return
-
-    const timer = setInterval(() => {
-      setActivePipelineStep((prev) => {
-        if (prev >= 4) {
-          clearInterval(timer)
-          setDemoStatus('complete')
-          // Calculate mock outputs
-          const text = demoInput.toLowerCase()
-          let category = 'GENERAL MAINTENANCE'
-          let urgency = 'MEDIUM'
-          let eta = '12 Hours'
-
-          if (text.includes('ac') || text.includes('cooling') || text.includes('fan') || text.includes('electrical')) {
-            category = 'ELECTRICAL & HVAC'
-            urgency = 'HIGH'
-            eta = '2 Hours'
-          } else if (text.includes('water') || text.includes('overflow') || text.includes('leak') || text.includes('pipe') || text.includes('washroom')) {
-            category = 'PLUMBING'
-            urgency = 'CRITICAL'
-            eta = '1 Hour'
-          } else if (text.includes('projector') || text.includes('board') || text.includes('smart') || text.includes('screen') || text.includes('wifi') || text.includes('network')) {
-            category = 'IT & AUDIO-VISUAL'
-            urgency = 'LOW'
-            eta = '4 Hours'
-          }
-
-          setDemoResult({ category, urgency, eta })
-          return 4
-        }
-        return prev + 1
-      })
-    }, 900)
-
-    return () => clearInterval(timer)
-  }, [demoStatus, demoInput])
-
-  // Portfolio Diagnostics CPU/RAM simulator
-  useEffect(() => {
-    if (selectedProject?.id !== 'portfolio') return
-    const interval = setInterval(() => {
-      setCpuUsage(Math.floor(Math.random() * 15) + 5)
-      setMemoryUsage(Math.floor(Math.random() * 5) + 42)
-    }, 1500)
-    return () => clearInterval(interval)
-  }, [selectedProject])
-
-  // Lighthouse Audit simulation
-  const runLighthouseAudit = () => {
-    setAuditStatus('running')
-    setAuditProgress(0)
-  }
-
-  useEffect(() => {
-    if (auditStatus !== 'running') return
-    const timer = setInterval(() => {
-      setAuditProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer)
-          setAuditStatus('complete')
-          return 100
-        }
-        return prev + 10
-      })
-    }, 200)
-    return () => clearInterval(timer)
-  }, [auditStatus])
-
-  // Resume PDF export simulation
-  const runResumeExport = () => {
-    setResumeExportStatus('generating')
-    setTimeout(() => {
-      setResumeExportStatus('complete')
-    }, 2000)
-  }
-
-  // Reset demo when selected project changes
-  useEffect(() => {
-    setDemoInput('')
-    setDemoStatus('idle')
-    setDemoResult(null)
-    setActivePipelineStep(-1)
-    setResumeName('Abin K R')
-    setResumeTitle('Full Stack Developer')
-    setResumeSkills('React, Node.js, TypeScript, Python')
-    setResumeExportStatus('idle')
-    setAuditProgress(0)
-    setAuditStatus('idle')
-  }, [selectedProject])
+  const featuredProject = projects.find(p => p.featured)!
+  const otherProjects = projects.filter(p => !p.featured)
 
   return (
-    <section id="projects" className="min-h-screen py-24 px-6 relative z-10 grid-bg">
-      <div className="max-w-5xl mx-auto space-y-16">
-        {/* Title */}
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-white">
-            Project Universe
-          </h2>
-          <p className="text-universe-muted max-w-xl mx-auto text-sm md:text-base">
-            Explore active deployments floating in my development universe. Tap a project to enter its Command Center, run live sandboxed demos, and trace the architecture logic.
-          </p>
-        </div>
-
-        {/* Orbit System Area */}
-        <div className="relative h-[450px] flex items-center justify-center border border-slate-900 bg-slate-950/20 rounded-3xl overflow-hidden glass-panel">
-          {/* Orbits backdrop */}
-          <div className="absolute w-[200px] h-[200px] rounded-full border border-slate-800/40 pointer-events-none" />
-          <div className="absolute w-[340px] h-[340px] rounded-full border border-slate-850/40 pointer-events-none" />
-
-          {/* Central Sun: Developer Core */}
-          <div className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-r from-universe-primary to-universe-accent flex items-center justify-center shadow-lg shadow-universe-primary/30">
-            <Sparkles className="w-6 h-6 text-white animate-spin" style={{ animationDuration: '8s' }} />
+    <section id="projects" className="min-h-screen py-24 px-6 relative z-10">
+      {/* Section Header */}
+      <div className="max-w-6xl mx-auto mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-[#66FF03]" />
+            <span className="text-xs font-mono text-slate-400 tracking-wider uppercase">Featured Work</span>
           </div>
-
-          {/* Floating Planets */}
-          {projects.map((project, index) => {
-            const Icon = project.icon
-            // Calculate orbital properties
-            const angle = (index * (360 / projects.length) * Math.PI) / 180
-            const radius = 130 + index * 40
-            
-            return (
-              <motion.button
-                key={project.id}
-                onClick={() => setSelectedProject(project)}
-                animate={{
-                  x: [Math.cos(angle) * radius, Math.cos(angle + Math.PI) * radius, Math.cos(angle) * radius],
-                  y: [Math.sin(angle) * radius, Math.sin(angle + Math.PI) * radius, Math.sin(angle) * radius],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: project.orbitDuration,
-                  ease: 'linear',
-                }}
-                whileHover={{ scale: 1.1, cursor: 'pointer' }}
-                className={`absolute z-20 ${project.planetSize} rounded-full bg-gradient-to-br ${project.color} p-0.5 shadow-lg flex flex-col items-center justify-center text-white`}
-              >
-                <div className="w-full h-full rounded-full bg-slate-950/90 flex flex-col items-center justify-center gap-1 hover:bg-transparent transition-all duration-300">
-                  <Icon className="w-6 h-6 text-white" />
-                  <span className="text-[9px] font-heading font-semibold text-slate-300 max-w-[80px] text-center truncate">
-                    {project.name.split(' ')[0]}
-                  </span>
-                </div>
-              </motion.button>
-            )
-          })}
-        </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
+            Projects
+          </h2>
+          <p className="text-slate-400 mt-4 max-w-lg mx-auto text-sm leading-relaxed">
+            Real-world applications built from concept to deployment — each solving a genuine problem with modern tech stacks.
+          </p>
+        </motion.div>
       </div>
 
-      {/* Command Center Overlay Modal */}
+      {/* Featured Project — Smart Campus */}
+      <div className="max-w-6xl mx-auto mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          onClick={() => setSelectedProject(featuredProject)}
+          className="group cursor-pointer relative overflow-hidden rounded-2xl border border-white/[0.06] bg-slate-950/80 backdrop-blur-sm hover:border-white/10 transition-all duration-500"
+        >
+          {/* Gradient glow behind */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${featuredProject.gradient} opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-0">
+            {/* Left — Project Screenshot Area */}
+            <div className="relative p-8 lg:p-10 flex flex-col justify-center min-h-[280px] lg:min-h-[360px]">
+              {/* Mock browser window showing dashboard */}
+              <div className="bg-slate-900/80 rounded-xl border border-white/[0.06] overflow-hidden shadow-2xl group-hover:scale-[1.02] transition-transform duration-500">
+                {/* Browser chrome */}
+                <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-800/60 border-b border-white/[0.04]">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+                  <div className="flex-1 ml-3 bg-slate-900/60 rounded-md px-3 py-0.5">
+                    <span className="text-[9px] text-slate-500 font-mono">smart-campus-student.vercel.app/dashboard</span>
+                  </div>
+                </div>
+                {/* Dashboard mock content */}
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-rose-500/20 flex items-center justify-center">
+                        <Shield className="w-3 h-3 text-rose-400" />
+                      </div>
+                      <span className="text-[10px] font-bold text-white">Smart Campus</span>
+                    </div>
+                    <div className="flex gap-3 text-[9px] text-slate-500 font-mono">
+                      <span>Dashboard</span>
+                      <span>Submit Complaint</span>
+                      <span>History</span>
+                    </div>
+                  </div>
+                  <div className="bg-rose-500/5 border border-rose-500/10 rounded-lg p-3">
+                    <span className="text-[8px] text-rose-400 font-mono uppercase tracking-wider">Student Dashboard</span>
+                    <h4 className="text-sm font-bold text-white mt-0.5">Welcome back, akr2647</h4>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="bg-slate-800/50 rounded-lg p-2 border border-white/[0.04]">
+                      <span className="text-[8px] text-slate-500 block">Total</span>
+                      <span className="text-lg font-extrabold text-white">5</span>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-2 border border-white/[0.04]">
+                      <span className="text-[8px] text-slate-500 block">Pending</span>
+                      <span className="text-lg font-extrabold text-amber-400">4</span>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-2 border border-white/[0.04]">
+                      <span className="text-[8px] text-slate-500 block">Resolved</span>
+                      <span className="text-lg font-extrabold text-emerald-400">1</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1.5">
+                    {['Fire near electrical room', 'Campus Wi-Fi dead zone'].map((title, i) => (
+                      <div key={i} className="flex items-center justify-between bg-slate-800/30 rounded-md px-2.5 py-1.5 border border-white/[0.03]">
+                        <span className="text-[9px] text-slate-300">{title}</span>
+                        <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-bold ${i === 0 ? 'bg-red-500/10 text-red-400' : 'bg-amber-500/10 text-amber-400'}`}>
+                          {i === 0 ? 'High' : 'Medium'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — Project Info */}
+            <div className="p-8 lg:p-10 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-full uppercase tracking-wider font-bold">Featured Project</span>
+              </div>
+              <h3 className="text-2xl lg:text-3xl font-heading font-extrabold text-white tracking-tight leading-tight">
+                {featuredProject.name}
+              </h3>
+              <p className="text-sm text-slate-400 mt-1 font-mono">{featuredProject.tagline}</p>
+              <p className="text-sm text-slate-300 mt-4 leading-relaxed">
+                {featuredProject.description}
+              </p>
+
+              {/* Tech Stack */}
+              <div className="flex flex-wrap gap-1.5 mt-5">
+                {featuredProject.techStack.map((tech) => (
+                  <span key={tech} className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[10px] text-slate-400 font-mono">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 mt-6">
+                <a href={featuredProject.liveUrl} target="_blank" rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-bold hover:bg-rose-500/20 transition-colors">
+                  <Monitor className="w-3.5 h-3.5" />
+                  {featuredProject.liveLabel}
+                </a>
+                {featuredProject.liveUrl2 && (
+                  <a href={featuredProject.liveUrl2} target="_blank" rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-slate-300 text-xs font-bold hover:bg-white/[0.08] transition-colors">
+                    <Shield className="w-3.5 h-3.5" />
+                    {featuredProject.liveLabel2}
+                  </a>
+                )}
+                <a href={featuredProject.githubUrl} target="_blank" rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-slate-400 text-xs font-medium hover:text-white hover:bg-white/[0.08] transition-colors">
+                  <GithubIcon className="w-3.5 h-3.5" />
+                  Source Code
+                </a>
+              </div>
+
+              {/* Read More */}
+              <button
+                onClick={(e) => { e.stopPropagation(); setSelectedProject(featuredProject) }}
+                className="inline-flex items-center gap-1 mt-5 text-xs text-slate-500 hover:text-white transition-colors cursor-pointer group/btn"
+              >
+                <span>View full case study</span>
+                <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Project Grid — Other Projects */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {otherProjects.map((project, index) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+            onClick={() => setSelectedProject(project)}
+            className="group cursor-pointer relative overflow-hidden rounded-2xl border border-white/[0.06] bg-slate-950/80 backdrop-blur-sm hover:border-white/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20"
+          >
+            {/* Gradient background */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-50 group-hover:opacity-70 transition-opacity duration-500`} />
+
+            <div className="relative z-10 p-6 flex flex-col min-h-[340px]">
+              {/* Icon & Title */}
+              <div className="flex items-start justify-between mb-4">
+                <div className={`w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center`}>
+                  <project.icon className={`w-5 h-5 ${project.accentColor}`} />
+                </div>
+                <a href={project.githubUrl} target="_blank" rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="p-2 rounded-lg bg-white/[0.03] border border-white/[0.05] text-slate-500 hover:text-white hover:bg-white/[0.08] transition-colors">
+                  <GithubIcon className="w-4 h-4" />
+                </a>
+              </div>
+
+              <h3 className="text-lg font-heading font-extrabold text-white tracking-tight leading-tight">
+                {project.name}
+              </h3>
+              <p className={`text-[11px] font-mono mt-1 ${project.accentColor}`}>{project.tagline}</p>
+
+              <p className="text-xs text-slate-400 mt-3 leading-relaxed flex-1">
+                {project.description.length > 140 ? project.description.slice(0, 140) + '...' : project.description}
+              </p>
+
+              {/* Tech Stack */}
+              <div className="flex flex-wrap gap-1 mt-4">
+                {project.techStack.slice(0, 4).map((tech) => (
+                  <span key={tech} className="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06] text-[9px] text-slate-500 font-mono">
+                    {tech}
+                  </span>
+                ))}
+                {project.techStack.length > 4 && (
+                  <span className="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06] text-[9px] text-slate-500 font-mono">
+                    +{project.techStack.length - 4}
+                  </span>
+                )}
+              </div>
+
+              {/* Bottom action */}
+              <div className="flex items-center justify-between mt-5 pt-4 border-t border-white/[0.04]">
+                <a href={project.liveUrl} target="_blank" rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-[#66FF03] transition-colors">
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  {project.liveLabel}
+                </a>
+                <span className="text-[10px] text-slate-600 group-hover:text-slate-400 transition-colors flex items-center gap-1">
+                  View details
+                  <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-4xl bg-slate-950 border border-slate-800 rounded-3xl shadow-2xl relative flex flex-col md:flex-row my-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative z-10 w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border border-white/[0.08] bg-slate-950/95 backdrop-blur-xl shadow-2xl"
             >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors z-30 cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
+              {/* Modal header gradient */}
+              <div className={`absolute inset-x-0 top-0 h-40 bg-gradient-to-b ${selectedProject.gradient} opacity-60 rounded-t-2xl`} />
 
-              {/* Sidebar Specifications */}
-              <div className="w-full md:w-[40%] border-b md:border-b-0 md:border-r border-slate-800 p-8 space-y-6">
-                <div>
-                  <span className="text-xs text-universe-accent font-mono uppercase tracking-wider">PROJECT COMMAND CENTER</span>
-                  <h3 className="text-2xl font-heading font-bold text-white mt-1">{selectedProject.name}</h3>
-                  <p className="text-slate-400 text-xs mt-2 leading-relaxed">{selectedProject.tagline}</p>
-                </div>
+              <div className="relative z-10 p-8 md:p-10">
+                {/* Close button */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 p-2 rounded-xl bg-white/[0.05] border border-white/[0.08] text-slate-400 hover:text-white hover:bg-white/[0.1] transition-colors cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
 
-                <div className="space-y-4 text-sm">
-                  <div>
-                    <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Background Info</span>
-                    <p className="text-slate-300 mt-1 leading-relaxed">{selectedProject.description}</p>
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={`w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center`}>
+                    <selectedProject.icon className={`w-5 h-5 ${selectedProject.accentColor}`} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">The Challenge</span>
-                    <p className="text-slate-300 mt-1 leading-relaxed">{selectedProject.challenges}</p>
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Key Takeaway</span>
-                    <p className="text-slate-300 mt-1 leading-relaxed">{selectedProject.lessons}</p>
+                    <h3 className="text-2xl font-heading font-extrabold text-white tracking-tight">{selectedProject.name}</h3>
+                    <p className={`text-xs font-mono ${selectedProject.accentColor}`}>{selectedProject.tagline}</p>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-2">
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-1.5 mt-4">
                   {selectedProject.techStack.map((tech) => (
-                    <span key={tech} className="px-2.5 py-0.5 rounded-md text-[10px] font-mono bg-slate-900 border border-slate-800 text-slate-400">
+                    <span key={tech} className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[10px] text-slate-400 font-mono">
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center gap-3 pt-4 border-t border-slate-900">
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex-1 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-heading font-medium flex items-center justify-center gap-1.5 transition-all"
-                  >
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
+                {/* Description */}
+                <p className="text-sm text-slate-300 mt-6 leading-relaxed">{selectedProject.description}</p>
+
+                {/* Case Study Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                    <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block mb-2">The Problem</span>
+                    <p className="text-xs text-slate-300 leading-relaxed">{selectedProject.problem}</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                    <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block mb-2">The Solution</span>
+                    <p className="text-xs text-slate-300 leading-relaxed">{selectedProject.solution}</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                    <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block mb-2">Key Challenges</span>
+                    <p className="text-xs text-slate-300 leading-relaxed">{selectedProject.challenges}</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                    <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block mb-2">Lessons Learned</span>
+                    <p className="text-xs text-slate-300 leading-relaxed">{selectedProject.lessons}</p>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/[0.06]">
+                  <a href={selectedProject.liveUrl} target="_blank" rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#66FF03] text-black text-xs font-extrabold hover:bg-white transition-colors shadow-lg shadow-[#66FF03]/10">
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    {selectedProject.liveLabel || 'Live Demo'}
+                  </a>
+                  {selectedProject.liveUrl2 && (
+                    <a href={selectedProject.liveUrl2} target="_blank" rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white text-xs font-bold hover:bg-white/[0.12] transition-colors">
+                      <Shield className="w-3.5 h-3.5" />
+                      {selectedProject.liveLabel2}
+                    </a>
+                  )}
+                  <a href={selectedProject.githubUrl} target="_blank" rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-300 text-xs font-medium hover:text-white hover:bg-white/[0.1] transition-colors">
+                    <GithubIcon className="w-3.5 h-3.5" />
                     Source Code
                   </a>
-                  <a
-                    href={selectedProject.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex-1 px-4 py-2 rounded-xl bg-universe-primary hover:bg-white text-black font-heading font-extrabold text-xs flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-universe-primary/10 hover:shadow-white/10"
-                  >
-                    Launch Live
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
                 </div>
-              </div>
-
-              {/* Main Sandbox Interactive Workspace */}
-              <div className="flex-1 p-8 space-y-8 flex flex-col justify-between max-w-full overflow-hidden">
-                {/* 1. SMART CAMPUS CLASSIFIER SANDBOX */}
-                {selectedProject.id === 'smart-campus' && (
-                  <div className="space-y-6 flex-1 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-heading font-bold text-white flex items-center gap-2">
-                        <Play className="w-4 h-4 text-universe-accent" />
-                        <span>Live Classifier Sandbox</span>
-                      </h4>
-                      <p className="text-xs text-slate-400">
-                        Interact directly with the system core. Write or select a ticket complaint below to see the classification algorithm categorize it live.
-                      </p>
-
-                      <div className="space-y-3">
-                        <div className="flex flex-wrap gap-2">
-                          {presets.map((preset) => (
-                            <button
-                              key={preset}
-                              onClick={() => setDemoInput(preset)}
-                              className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[10px] text-slate-400 hover:text-white transition-all cursor-pointer hover:border-slate-700"
-                            >
-                              {preset}
-                            </button>
-                          ))}
-                        </div>
-
-                        <div className="flex gap-2">
-                          <input
-                            type="text"
-                            value={demoInput}
-                            onChange={(e) => setDemoInput(e.target.value)}
-                            placeholder="Describe a campus issue... (e.g. broken faucet in classroom 302)"
-                            className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-universe-accent placeholder:text-slate-600"
-                          />
-                          <button
-                            onClick={handleRunDemo}
-                            disabled={demoStatus === 'analyzing'}
-                            className="px-4 py-2.5 rounded-xl bg-universe-accent hover:opacity-90 disabled:opacity-50 text-slate-950 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
-                          >
-                            <Send className="w-3.5 h-3.5" />
-                            Run
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Results Panel */}
-                      <AnimatePresence>
-                        {demoResult && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="p-4 rounded-xl border border-universe-accent/20 bg-universe-accent/5 grid grid-cols-3 gap-4"
-                          >
-                            <div>
-                              <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block">CLASSIFIED DEPT</span>
-                              <span className="text-xs font-bold text-universe-accent block mt-0.5">{demoResult.category}</span>
-                            </div>
-                            <div>
-                              <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block">URGENCY SCORE</span>
-                              <span className={`text-xs font-bold block mt-0.5 ${
-                                demoResult.urgency === 'CRITICAL' ? 'text-red-400' : demoResult.urgency === 'HIGH' ? 'text-amber-400' : 'text-slate-300'
-                              }`}>{demoResult.urgency}</span>
-                            </div>
-                            <div>
-                              <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block">RESOLVE ETA</span>
-                              <span className="text-xs font-bold text-white block mt-0.5">{demoResult.eta}</span>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    {/* 2. Visual Architecture Pipeline */}
-                    <div className="space-y-4 pt-4 border-t border-slate-900">
-                      <h4 className="text-lg font-heading font-bold text-white flex items-center gap-2">
-                        <Cpu className="w-4 h-4 text-universe-primary" />
-                        <span>Pipeline Diagnostics</span>
-                      </h4>
-                      <p className="text-xs text-slate-400">
-                        Visualizing runtime execution data flow through nodes:
-                      </p>
-
-                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 relative">
-                        {/* Node 1: User */}
-                        <div className={`p-3 rounded-xl border flex flex-col items-center w-24 z-10 transition-all ${
-                          activePipelineStep >= 0 ? 'bg-universe-primary/10 border-universe-primary text-white' : 'bg-slate-900 border-slate-800 text-slate-500'
-                        }`}>
-                          <span className="text-[9px] font-mono font-medium">1. USER</span>
-                          <span className="text-[10px] font-bold mt-1">Input Text</span>
-                        </div>
-
-                        <ArrowRight className={`hidden sm:block w-4 h-4 transition-colors ${activePipelineStep >= 1 ? 'text-universe-primary' : 'text-slate-800'}`} />
-
-                        {/* Node 2: FE Router */}
-                        <div className={`p-3 rounded-xl border flex flex-col items-center w-24 z-10 transition-all ${
-                          activePipelineStep >= 1 ? 'bg-universe-primary/10 border-universe-primary text-white' : 'bg-slate-900 border-slate-800 text-slate-500'
-                        }`}>
-                          <span className="text-[9px] font-mono font-medium">2. FRONTEND</span>
-                          <span className="text-[10px] font-bold mt-1">Vite/Client</span>
-                        </div>
-
-                        <ArrowRight className={`hidden sm:block w-4 h-4 transition-colors ${activePipelineStep >= 2 ? 'text-universe-primary' : 'text-slate-800'}`} />
-
-                        {/* Node 3: Express Router */}
-                        <div className={`p-3 rounded-xl border flex flex-col items-center w-24 z-10 transition-all ${
-                          activePipelineStep >= 2 ? 'bg-universe-primary/10 border-universe-primary text-white' : 'bg-slate-900 border-slate-800 text-slate-500'
-                        }`}>
-                          <span className="text-[9px] font-mono font-medium">3. BACKEND</span>
-                          <span className="text-[10px] font-bold mt-1">Node API</span>
-                        </div>
-
-                        <ArrowRight className={`hidden sm:block w-4 h-4 transition-colors ${activePipelineStep >= 3 ? 'text-universe-primary' : 'text-slate-800'}`} />
-
-                        {/* Node 4: Database / Classifier */}
-                        <div className={`p-3 rounded-xl border flex flex-col items-center w-24 z-10 transition-all ${
-                          activePipelineStep >= 3 ? 'bg-universe-primary/10 border-universe-primary text-white' : 'bg-slate-900 border-slate-800 text-slate-500'
-                        }`}>
-                          <span className="text-[9px] font-mono font-medium">4. ENGINE</span>
-                          <span className="text-[10px] font-bold mt-1">AI Classifier</span>
-                        </div>
-                      </div>
-
-                      {/* Logs terminal */}
-                      <div className="p-3 bg-slate-900 border border-slate-850 rounded-xl font-mono text-[10px] text-slate-400 space-y-1 select-none">
-                        <div>{activePipelineStep >= 0 ? '> Initializing data stream...' : '> Diagnostics idle.'}</div>
-                        {activePipelineStep >= 1 && <div className="text-cyan-400">&gt; Stream packet routed to Gateway (200 OK)</div>}
-                        {activePipelineStep >= 2 && <div className="text-purple-400">&gt; Processing NLP Tokenization (model: custom-classifier)</div>}
-                        {activePipelineStep >= 3 && <div className="text-emerald-400">&gt; Forwarding departments triggers. Response generated.</div>}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* 2. PROFESSIONAL RESUME BUILDER SANDBOX */}
-                {selectedProject.id === 'resume-builder' && (
-                  <div className="space-y-6 flex-1 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-heading font-bold text-white flex items-center gap-2">
-                        <FileText className="w-4 h-4 text-universe-accent" />
-                        <span>Interactive Resume Builder Sandbox</span>
-                      </h4>
-                      <p className="text-xs text-slate-400">
-                        Edit details on the left, and watch the resume template update instantly on the right. Simulates dynamic state rendering in React.
-                      </p>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {/* Editor Form */}
-                        <div className="space-y-4 bg-slate-900/40 border border-slate-800/85 p-4 rounded-xl">
-                          <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Profile Fields</span>
-                          <div className="space-y-3">
-                            <div className="space-y-1">
-                              <label className="text-[10px] text-slate-400 font-mono">Full Name</label>
-                              <input
-                                type="text"
-                                value={resumeName}
-                                onChange={(e) => setResumeName(e.target.value)}
-                                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-universe-accent"
-                              />
-                            </div>
-                            <div className="space-y-1">
-                              <label className="text-[10px] text-slate-400 font-mono">Job Title</label>
-                              <input
-                                type="text"
-                                value={resumeTitle}
-                                onChange={(e) => setResumeTitle(e.target.value)}
-                                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-universe-accent"
-                              />
-                            </div>
-                            <div className="space-y-1">
-                              <label className="text-[10px] text-slate-400 font-mono">Key Skills (Comma separated)</label>
-                              <input
-                                type="text"
-                                value={resumeSkills}
-                                onChange={(e) => setResumeSkills(e.target.value)}
-                                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-universe-accent"
-                              />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Live Template Preview */}
-                        <div className="bg-white text-slate-900 p-5 rounded-xl shadow-inner flex flex-col justify-between min-h-[180px] max-h-[220px] overflow-hidden">
-                          <div>
-                            <div className="border-b border-slate-300 pb-2">
-                              <h5 className="font-heading font-bold text-base text-slate-900 tracking-tight leading-none">{resumeName}</h5>
-                              <p className="text-[10px] text-universe-primary font-bold uppercase tracking-wider mt-1">{resumeTitle}</p>
-                            </div>
-                            <div className="mt-3">
-                              <p className="text-[9px] font-bold text-slate-800 uppercase tracking-wider mb-1">Key Competencies</p>
-                              <div className="flex flex-wrap gap-1">
-                                {resumeSkills.split(',').map((skill, idx) => (
-                                  <span key={idx} className="bg-slate-100 text-slate-700 text-[8px] px-1.5 py-0.5 rounded border border-slate-200">
-                                    {skill.trim()}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="text-[7px] text-slate-400 text-right itemprop=&quot;about&quot; font-mono border-t border-slate-100 pt-1.5 mt-2">
-                            Generated by abinkr/resume-builder
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* PDF Generation Console */}
-                    <div className="pt-4 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4">
-                      <div className="text-left flex-1">
-                        <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block">PDF Compilation Engine</span>
-                        <p className="text-xs text-slate-300 mt-0.5">
-                          {resumeExportStatus === 'idle' && "Ready to compile client-side resume structure."}
-                          {resumeExportStatus === 'generating' && "Compiling and signing PDF document..."}
-                          {resumeExportStatus === 'complete' && "✔ Document generated successfully! (Mock Download triggered)"}
-                        </p>
-                      </div>
-                      <button
-                        onClick={runResumeExport}
-                        disabled={resumeExportStatus === 'generating'}
-                        className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-universe-primary text-black font-extrabold text-xs flex items-center justify-center gap-1.5 cursor-pointer hover:bg-white transition-colors"
-                      >
-                        <RefreshCw className={`w-3.5 h-3.5 ${resumeExportStatus === 'generating' ? 'animate-spin' : ''}`} />
-                        <span>{resumeExportStatus === 'generating' ? 'Generating PDF...' : 'Compile & Export'}</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* 3. PORTFOLIO DIAGNOSTICS SANDBOX */}
-                {selectedProject.id === 'portfolio' && (
-                  <div className="space-y-6 flex-1 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-heading font-bold text-white flex items-center gap-2">
-                        <Cpu className="w-4 h-4 text-universe-accent" />
-                        <span>Portfolio System Diagnostics Console</span>
-                      </h4>
-                      <p className="text-xs text-slate-400">
-                        Live diagnostic telemetry of the current React single page portfolio systems.
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        {/* CPU telemetry */}
-                        <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/40 flex flex-col justify-between">
-                          <div>
-                            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">GPU-Accelerated Load</span>
-                            <h5 className="text-2xl font-heading font-extrabold text-white mt-1">{cpuUsage}%</h5>
-                          </div>
-                          <div className="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden mt-3 border border-slate-900">
-                            <motion.div
-                              animate={{ width: `${cpuUsage}%` }}
-                              className="h-full bg-universe-primary"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Memory telemetry */}
-                        <div className="p-4 rounded-xl border border-slate-800 bg-slate-900/40 flex flex-col justify-between">
-                          <div>
-                            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">JS Heap Utilization</span>
-                            <h5 className="text-2xl font-heading font-extrabold text-white mt-1">{memoryUsage} MB</h5>
-                          </div>
-                          <div className="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden mt-3 border border-slate-900">
-                            <motion.div
-                              animate={{ width: `${(memoryUsage / 100) * 100}%` }}
-                              className="h-full bg-white"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Lighthouse Audit Simulator */}
-                      <div className="p-4 rounded-xl border border-slate-800/80 bg-slate-900/20 space-y-3">
-                        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Lighthouse System Benchmark</span>
-                        
-                        {auditStatus === 'complete' ? (
-                          <div className="grid grid-cols-4 gap-2 text-center py-2">
-                            <div className="flex flex-col items-center">
-                              <div className="w-10 h-10 rounded-full border-2 border-universe-primary flex items-center justify-center text-[10px] font-extrabold text-universe-primary shadow-lg shadow-universe-primary/10">100</div>
-                              <span className="text-[8px] font-mono text-slate-400 mt-1">Performance</span>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <div className="w-10 h-10 rounded-full border-2 border-universe-primary flex items-center justify-center text-[10px] font-extrabold text-universe-primary shadow-lg shadow-universe-primary/10">100</div>
-                              <span className="text-[8px] font-mono text-slate-400 mt-1">Accessibility</span>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <div className="w-10 h-10 rounded-full border-2 border-universe-primary flex items-center justify-center text-[10px] font-extrabold text-universe-primary shadow-lg shadow-universe-primary/10">100</div>
-                              <span className="text-[8px] font-mono text-slate-400 mt-1">Best Practice</span>
-                            </div>
-                            <div className="flex flex-col items-center">
-                              <div className="w-10 h-10 rounded-full border-2 border-universe-primary flex items-center justify-center text-[10px] font-extrabold text-universe-primary shadow-lg shadow-universe-primary/10">100</div>
-                              <span className="text-[8px] font-mono text-slate-400 mt-1">SEO</span>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="space-y-2">
-                            <div className="flex justify-between text-[10px] text-slate-400 font-mono">
-                              <span>{auditStatus === 'running' ? 'Auditing Core Web Vitals...' : 'Idle'}</span>
-                              {auditStatus === 'running' && <span>{auditProgress}%</span>}
-                            </div>
-                            <div className="w-full bg-slate-950 h-1 rounded-full overflow-hidden border border-slate-900">
-                              <div
-                                style={{ width: `${auditProgress}%` }}
-                                className="h-full bg-universe-primary transition-all duration-150"
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Benchmark Audit controls */}
-                    <div className="pt-4 border-t border-slate-900 flex items-center justify-between gap-4">
-                      <div className="text-left flex-1">
-                        <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block">Diagnostics Status</span>
-                        <p className="text-xs text-slate-300 mt-0.5">
-                          {auditStatus === 'idle' && "Telemetry online. Ready to trigger system audit."}
-                          {auditStatus === 'running' && "Auditing network speeds and painting cycles..."}
-                          {auditStatus === 'complete' && "✔ All systems nominal. Perfect benchmark score registered."}
-                        </p>
-                      </div>
-                      <button
-                        onClick={runLighthouseAudit}
-                        disabled={auditStatus === 'running'}
-                        className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-universe-primary text-black font-extrabold text-xs flex items-center justify-center gap-1.5 cursor-pointer hover:bg-white transition-colors"
-                      >
-                        <RefreshCw className={`w-3.5 h-3.5 ${auditStatus === 'running' ? 'animate-spin' : ''}`} />
-                        <span>{auditStatus === 'running' ? 'Auditing...' : 'Run Audit'}</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
               </div>
             </motion.div>
           </div>
