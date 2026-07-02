@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-universe: #050816;
+  --color-universe-primary: #6366F1;
+  --color-universe-secondary: #8B5CF6;
+  --color-universe-accent: #06B6D4;
+  --color-universe-success: #22C55E;
+  --color-universe-warning: #F59E0B;
+  --color-universe-error: #EF4444;
+  --color-universe-muted: #94A3B8;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  body {
+    background-color: var(--color-bg-universe);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050816;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glowing text and objects */
+.text-glow-accent {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.glow-border:hover {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Grid overlay background */
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float 3s ease-in-out infinite;
+}
